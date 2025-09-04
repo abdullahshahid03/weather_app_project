@@ -2,6 +2,7 @@ import React ,{useState} from 'react';
 import axios from 'axios';
 import Searchbar from './components/Searchbar';
 import WeatherCard from './components/WeatherCard';
+import Header from './components/Header';
 
 function App() {
   const [Weather, setWeather] = useState(null);
@@ -33,13 +34,16 @@ function App() {
   };
 
   return (
-    <div className="flex items-center flex-col justify-center min-h-screen bg-gray-100">
-      <div className='text-white flex flex-col items-center bg-black p-8 rounded-lg shadow-md max-w-md w-full'>
-        <h1 className="text-3xl font-bold text-center mb-6">Weather App</h1>
-        <Searchbar fetchWeather={fetchWeather} />
-        {loading && <p className="text-center mt-4">Loading...</p>}
-        {error && <p className="text-red-500 text-center mt-4">{error}</p>}
-        {Weather && <WeatherCard weather={Weather} />}
+    <div className="min-h-screen bg-gray-100">
+      <Header />
+      <div className="flex items-center flex-col justify-center min-h-[80vh]">
+        <div className='text-white flex flex-col items-center bg-black p-8 rounded-lg shadow-md max-w-md w-full mt-8'>
+          <h1 className="text-3xl font-bold text-center mb-6">Weather App</h1>
+          <Searchbar fetchWeather={fetchWeather} />
+          {loading && <p className="text-center mt-4">Loading...</p>}
+          {error && <p className="text-red-500 text-center mt-4">{error}</p>}
+          {Weather && <WeatherCard weather={Weather} />}
+        </div>
       </div>
     </div>
   );
